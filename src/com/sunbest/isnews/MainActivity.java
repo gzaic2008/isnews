@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 				Toast toast = Toast.makeText(getApplicationContext(), "test toast text", Toast.LENGTH_LONG);
 
 				//1. show text on center screen
-				toast.setGravity(Gravity.CENTER, 0, 0);
+				//toast.setGravity(Gravity.CENTER, 0, 0);
 				
 				
 				//2. set image as backgroud

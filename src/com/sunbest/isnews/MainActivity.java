@@ -1,39 +1,30 @@
 package com.sunbest.isnews;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.util.Xml;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.sunbest.isnews.base.PropertiesUtil;
 
 public class MainActivity extends Activity {
 
 	private Button btnopen;
 	private Button btnalert;
+
+	private Button btnadd;
 
 	private Dialog pd;
 
@@ -48,6 +39,8 @@ public class MainActivity extends Activity {
 
 		btnopen.setOnClickListener(lister);
 		btnalert.setOnClickListener(lister);
+
+		btnadd = (Button) findViewById(R.id.btnAdd);
 
 		pd = new AlertDialog.Builder(this).setTitle("title")
 				.setMessage("processing...").create();
@@ -80,16 +73,59 @@ public class MainActivity extends Activity {
 
 				// toast.show();
 
-				pd.show();
+				// pd.show();
+
+				// getXml();
+
+				// 3. call the secord activity here
+
+				Intent intent = new Intent();
+				//intent.setClass(MainActivity.this, UserFormActivity.class);
+				intent.setClass(MainActivity.this, PoupWindowActivity.class);
+				intent.putExtra("parentid", "guid");
 				
 				
-				getXml();
+				startActivity(intent);
+				
+				startActivityForResult(intent, REQUEST_CODE);
+				//intent.setAction(Intent.ACTION_CALL);
+				//startActivity(intent);
 
 			}
 
 		}
 
 	};
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		// TODO Auto-generated method stub
+
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (requestCode == REQUEST_CODE)
+
+		{
+
+			if (resultCode == 1)
+
+			{
+
+				Bundle bundle = data.getExtras();
+
+				String str = bundle.getString("back");
+
+				Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG)
+						.show();
+
+			}
+
+		}
+
+	}
+
+	private static final int REQUEST_CODE = 1;
 
 	// private EditText txCity;
 	// private Button btnSearch;

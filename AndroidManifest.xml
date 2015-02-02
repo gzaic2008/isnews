@@ -25,6 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name=".UserFormActivity"  android:label="userform" ></activity>
+        <activity android:name=".PoupWindowActivity"  android:label="popupwin" ></activity>
+        
+        
+        
     </application>
+    
+    
+    
 
 </manifest>

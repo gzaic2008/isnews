@@ -80,16 +80,20 @@ public class MainActivity extends Activity {
 				// 3. call the secord activity here
 
 				Intent intent = new Intent();
-				//intent.setClass(MainActivity.this, UserFormActivity.class);
-				intent.setClass(MainActivity.this, PoupWindowActivity.class);
-				intent.putExtra("parentid", "guid");
-				
-				
+				// intent.setClass(MainActivity.this, UserFormActivity.class);
+				// intent.setClass(MainActivity.this, PoupWindowActivity.class);
+
+				// intent.setClass(MainActivity.this, PoupWindowActivity.class);
+				// Intent.ACTION_AIRPLANE_MODE_CHANGED;
+				// intent.putExtra("parentid", "guid");
+
+				intent.setClass(MainActivity.this, MyWebview.class);
+
 				startActivity(intent);
-				
-				startActivityForResult(intent, REQUEST_CODE);
-				//intent.setAction(Intent.ACTION_CALL);
-				//startActivity(intent);
+
+				// //startActivityForResult(intent, REQUEST_CODE);
+				// intent.setAction(Intent.ACTION_CALL);
+				// startActivity(intent);
 
 			}
 

@@ -28,6 +28,8 @@
         
         <activity android:name=".UserFormActivity"  android:label="userform" ></activity>
         <activity android:name=".PoupWindowActivity"  android:label="popupwin" ></activity>
+        <activity android:name=".MyWebview"  android:label="webview" ></activity>
+         
         
         
         

@@ -8,7 +8,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +15,12 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -28,24 +32,57 @@ public class MainActivity extends Activity {
 
 	private Dialog pd;
 
+	private ListView userlist;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 
-		btnopen = (Button) findViewById(R.id.btnopen);
+		/*
+		 * setContentView(R.layout.activity_main);
+		 * 
+		 * btnopen = (Button) findViewById(R.id.btnopen);
+		 * 
+		 * btnalert = (Button) findViewById(R.id.btnalert);
+		 * 
+		 * btnopen.setOnClickListener(lister);
+		 * btnalert.setOnClickListener(lister);
+		 * 
+		 * btnadd = (Button) findViewById(R.id.btnAdd);
+		 * 
+		 * pd = new AlertDialog.Builder(this).setTitle("title")
+		 * .setMessage("processing...").create();
+		 * 
+		 * // pd.show();
+		 */
 
-		btnalert = (Button) findViewById(R.id.btnalert);
+		// listview demo
+		setContentView(R.layout.userlist);
+		userlist = (ListView) findViewById(R.id.listView1);
 
-		btnopen.setOnClickListener(lister);
-		btnalert.setOnClickListener(lister);
+		String[] users = new String[] { "user1", "user2", "张山","历史","斯福","历始发牢骚式","骚连接方式" };
+		// user android item
+		ArrayAdapter<String> arrdp = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, users);
 
-		btnadd = (Button) findViewById(R.id.btnAdd);
+		userlist.setAdapter(arrdp);
+		
+		
+		userlist.setOnItemClickListener(new OnItemClickListener() {
 
-		pd = new AlertDialog.Builder(this).setTitle("title")
-				.setMessage("processing...").create();
-
-		// pd.show();
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				TextView itemv = (TextView) view;
+				 
+				
+				Toast.makeText(MainActivity.this, itemv.getText(), Toast.LENGTH_SHORT).show();
+				
+			}
+			
+			
+		});
 
 	}
 

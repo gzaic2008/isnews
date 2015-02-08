@@ -32,7 +32,9 @@ public class MainActivity extends Activity {
 
 	private Dialog pd;
 
-	private ListView userlist;
+	//private ListView userlist;
+	
+	private ReflashListview userlist;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,10 @@ public class MainActivity extends Activity {
 
 		// listview demo
 		setContentView(R.layout.userlist);
-		userlist = (ListView) findViewById(R.id.listView1);
+		//userlist = (ListView) findViewById(R.id.listView1);
+		
+		//使用自定义的listview
+		userlist = (ReflashListview) findViewById(R.id.listView1);
 
 		String[] users = new String[] { "user1", "user2", "张山","历史","斯福","历始发牢骚式","骚连接方式" };
 		// user android item

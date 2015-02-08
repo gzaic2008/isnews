@@ -3,6 +3,8 @@ package com.sunbest.isnews;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -10,18 +12,17 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sunbest.isnews.MyListView.OnRefreshListener;
 
 public class MainActivity extends Activity {
 
@@ -32,12 +33,17 @@ public class MainActivity extends Activity {
 
 	private Dialog pd;
 
-	//private ListView userlist;
-	
-	//private ReflashListview userlist;
-	
-	
-	private CustomListView userlist;
+	// private ListView userlist;
+
+	// private ReflashListview userlist;
+
+	// private CustomListView userlist;
+
+	private MyListView userlist;
+
+	private LvAdapter adapter;
+
+	private List<String> list;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,37 +69,86 @@ public class MainActivity extends Activity {
 
 		// listview demo
 		setContentView(R.layout.userlist);
-		//userlist = (ListView) findViewById(R.id.listView1);
-		
-		//使用自定义的listview
-		//userlist = (ReflashListview) findViewById(R.id.listView1);
-		
-		
-		userlist = (CustomListView) findViewById(R.id.listView1);
+		// userlist = (ListView) findViewById(R.id.listView1);
 
-		String[] users = new String[] { "user1", "user2", "张山","历史","斯福","历始发牢骚式","骚连接方式","历始发牢骚式44","骚连接方式tt","历始发牢骚式ggg","骚连接方式yyy" };
+		// 使用自定义的listview
+		// userlist = (ReflashListview) findViewById(R.id.listView1);
+
+		// userlist = (CustomListView) findViewById(R.id.listView1);
+
+		userlist = (MyListView) findViewById(R.id.listView1);
+
+		String[] users = new String[] { "user1", "user2", "张山", "历史", "斯福",
+				"历始发牢骚式", "骚连接方式", "历始发牢骚式44", "骚连接方式tt", "历始发牢骚式ggg",
+				"骚连接方式yyy" };
 		// user android item
 		ArrayAdapter<String> arrdp = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, users);
 
-		userlist.setAdapter(arrdp);
-		
-		
-		userlist.setOnItemClickListener(new OnItemClickListener() {
+		list = new ArrayList<String>();
+		list.add("loonggg");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+		list.add("我们都是开发者");
+
+		adapter = new LvAdapter(list, this);
+		userlist.setAdapter(adapter);
+
+		userlist.setonRefreshListener(new OnRefreshListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				TextView itemv = (TextView) view;
-				 
-				
-				Toast.makeText(MainActivity.this, itemv.getText(), Toast.LENGTH_SHORT).show();
-				
+			public void onRefresh() {
+				new AsyncTask<Void, Void, Void>() {
+					protected Void doInBackground(Void... params) {
+						try {
+							Thread.sleep(1000);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						list.add("刷新后添加的内容");
+						return null;
+					}
+
+					@Override
+					protected void onPostExecute(Void result) {
+						adapter.notifyDataSetChanged();
+						userlist.onRefreshComplete();
+					}
+				}.execute(null, null, null);
 			}
-			
-			
 		});
+
+		// userlist.setAdapter(arrdp);
+
+		// userlist.setOnItemClickListener(new OnItemClickListener() {
+		//
+		// @Override
+		// public void onItemClick(AdapterView<?> parent, View view,
+		// int position, long id) {
+		// // TODO Auto-generated method stub
+		// TextView itemv = (TextView) view;
+		//
+		//
+		// Toast.makeText(MainActivity.this, itemv.getText(),
+		// Toast.LENGTH_SHORT).show();
+		//
+		// }
+		//
+		//
+		// });
 
 	}
 

@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
+//这个不能使用
 public class CustomListView extends ListView implements OnScrollListener {
 
 	private final static int RELEASE_TO_REFRESH = 0;

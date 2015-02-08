@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <!-- 使用自定义listview -->  
-    <com.sunbest.isnews.CustomListView
+    <!-- 使用自定义listview    CustomListView  MyListView-->  
+    <com.sunbest.isnews.MyListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

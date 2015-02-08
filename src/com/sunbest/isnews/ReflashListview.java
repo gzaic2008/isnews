@@ -11,6 +11,8 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
+
+////这个可以有待完善
 public class ReflashListview extends ListView implements OnScrollListener {
 
 	View header;

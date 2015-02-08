@@ -34,7 +34,10 @@ public class MainActivity extends Activity {
 
 	//private ListView userlist;
 	
-	private ReflashListview userlist;
+	//private ReflashListview userlist;
+	
+	
+	private CustomListView userlist;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +66,12 @@ public class MainActivity extends Activity {
 		//userlist = (ListView) findViewById(R.id.listView1);
 		
 		//使用自定义的listview
-		userlist = (ReflashListview) findViewById(R.id.listView1);
+		//userlist = (ReflashListview) findViewById(R.id.listView1);
+		
+		
+		userlist = (CustomListView) findViewById(R.id.listView1);
 
-		String[] users = new String[] { "user1", "user2", "张山","历史","斯福","历始发牢骚式","骚连接方式" };
+		String[] users = new String[] { "user1", "user2", "张山","历史","斯福","历始发牢骚式","骚连接方式","历始发牢骚式44","骚连接方式tt","历始发牢骚式ggg","骚连接方式yyy" };
 		// user android item
 		ArrayAdapter<String> arrdp = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, users);

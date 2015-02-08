@@ -3,5 +3,10 @@
 
     <string name="app_name">isnews</string>
     <string name="hello_world">Hello world!</string>
+    <string name="head_tips_text">tips!</string>
+    <string name="lash_updated_text">lash_updated_text!</string>
+    
+    
+    
 
 </resources>
